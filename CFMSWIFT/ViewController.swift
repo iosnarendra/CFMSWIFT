@@ -106,6 +106,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.present(forgotPasswordAlert, animated: true, completion: nil)
 
     }
+    
+    //MARK: Service Call Methods
+
+    func forgotPasswordServiceCall(emailText:String) -> Void {
+        debugPrint("forgotpassword service call")
+    }
 
     //MARK: TextFied Methods
     
