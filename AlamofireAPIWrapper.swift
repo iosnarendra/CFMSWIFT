@@ -30,6 +30,7 @@ class AlamofireAPIWrapper: NSObject {
         }
     }
     
+    
     //MARK: -POST REQUEST
 
     class func requestPOSTURL(_ strURL : String, params : [String : AnyObject]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void){

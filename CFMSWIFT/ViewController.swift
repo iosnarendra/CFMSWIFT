@@ -63,10 +63,44 @@ class ViewController: UIViewController, UITextFieldDelegate {
             AlamofireAPIWrapper.requestPOSTURL(login_URL, params: nil, headers: ["Content-type" : "application/json"], success:
                 {
                     (JSONResponse) -> Void in
-                    debugPrint("success JSONResponse : \(JSONResponse as Any)")
+//                    debugPrint("success JSONResponse : \(JSONResponse as Any)")
                     let resultsDict = (JSONResponse.dictionary)
                     
-//                    UserDefaults.standard.set(resultsDict(value(forKeyPath: "loginauthResults.user_id")), forKey: "USER_ID")
+ 
+                    
+                    
+//                    if let resData = JSONResponse.dictionary {
+//                        if let withGroupDictionary  = resData: [String: JSON]
+//                        {
+//                            debugPrint(resData["user_id"]?.string!)
+//                    }
+                    
+                    
+               
+//                    let searchListArray = (JSONResponse.array)
+//                    
+//                    for eachMessageDictionary in searchListArray!
+//                    {
+//                        let eachMessageModelObject = FoodModel.init(withGroupDictionary: eachMessageDictionary.dictionary!)
+//                        if !self.groupChatArray.contains(eachMessageModelObject)
+//                        {
+//                            self.groupChatArray.append(eachMessageModelObject)
+//                        }
+//                        
+//                    }
+                    
+//                    if let resultsDict: NSDictionary = JSONResponse.dictionary as NSDictionary? {
+//                        if let loginauthResults: NSDictionary = resultsDict["loginauthResults"] as? NSDictionary{
+//                            if let user_id : NSString = loginauthResults["user_id"] as? NSString {
+//                                debugPrint("user_id : \(user_id)")
+//                             }
+//                            
+//                        }
+//                    }
+                    
+                    
+//                    debugPrint("loginauthResults.user_id : \(resultsDict(value(forKey: "loginauthResults")) as Any)")
+ //                    UserDefaults.standard.set(resultsDict(value(forKeyPath: "loginauthResults.user_id")), forKey: "USER_ID")
                     
             },failure: {
                 (error) -> Void in
@@ -80,7 +114,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 debugPrint("failure")
             })
             
-            self.showAlert(title: APPNAME, message: "Login Success")
+//            self.showAlert(title: APPNAME, message: "Login Success")
         }
     }
  
