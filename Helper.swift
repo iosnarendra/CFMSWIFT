@@ -37,19 +37,16 @@ class Helper: NSObject
     }
 //    static func toString(_ parameter: Any?, defaultValue: String = " ") -> String
 //    {
-//        if let stringValue = parameter as? String
-//        {
-        
+//        if let stringValue = parameter as? String {
+//        
 //            var decode :String = " "
 //            var decodeString :String = " "
 //            decode = stringValue.htmlUnescape()
 //            let decodeStr = decode.removingPercentEncoding
-//            if decodeStr != nil
-//            {
+//            
+//            if decodeStr != nil {
 //                decodeString = decodeStr!
-//            }
-//            else
-//            {
+//            } else {
 //                decodeString = stringValue
 //            }
 //            return decodeString

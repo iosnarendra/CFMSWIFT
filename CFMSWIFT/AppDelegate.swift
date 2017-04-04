@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar .appearance().barTintColor = APPCOLOR
         UITabBar .appearance().tintColor = UIColor.white
         
-        if  IDIOM == iPAD {
+        if  UIDevice.current.userInterfaceIdiom == .pad {
             
             UINavigationBar.appearance().titleTextAttributes = [
                 NSFontAttributeName : UIFont.avenirBlack(25.0),

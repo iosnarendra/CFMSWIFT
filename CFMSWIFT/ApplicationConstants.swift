@@ -11,31 +11,41 @@ import UIKit
 //MARK: CONSTANTS
 let APPCOLOR: UIColor = UIColor.init(colorLiteralRed: 49.0/255.0, green: 187.0/255.0, blue: 172.0/255.0, alpha:1.0)
 let APPNAME : String =  "CFM"
-//let baseURL : String =  "http://asmanesri.cloudapp.net/CentralFundsManagement/CFMProvider.svc/"
-let baseURL : String =  "http://172.16.16.174/CentralFundsManagement/CFMProvider.svc/"
 let interNetError : String = "Please check your Internet connection"
 
+//MARK: DEVICE TYPES to check idiom
+//enum UIUserInterfaceIdiom : Int {
+//    case Unspecified
+//    case Phone
+//    case Pad
+//}
 
-//MARK: DEVICE TYPES
-let IDIOM = UI_USER_INTERFACE_IDIOM()
-let iPAD = UIUserInterfaceIdiom.pad
-let iPhone = UIUserInterfaceIdiom.phone
+//MARK: DEVICE SIZE
+struct ScreenSize {
+    static let SCREEN_WIDTH         = UIScreen.main.bounds.size.width
+    static let SCREEN_HEIGHT        = UIScreen.main.bounds.size.height
+    static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+}
 
-//MARK: SERVICE URLS
- let LOGIN_URL = String(format: baseURL + "loginauth/?username=%@"+"&password=%@")
+//MARK: DEVICE MODEL
+struct DeviceModel {
+    static let IS_IPHONE_4_OR_LESS  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+    static let IS_IPHONE_5          = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+    static let IS_IPHONE_6          = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+    static let IS_IPHONE_6P         = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+    static let IS_IPAD              = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
+    static let IS_IPAD_PRO          = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.SCREEN_MAX_LENGTH == 1366.0
+}
 
-//#define LOGIN_URL (BASE_URL @"loginauth/?username=%@&password=%@")
-//#define FORGOT_PWD_URL (BASE_URL @"newpassword/?username=%@")
-//
-//#pragma mark - RCUSER
-//
-//#define DEPT_SERVICE (BASE_URL @"getdeptwiseissues/?result_limit=%@")
-//#define SCHEME_SERVICE (BASE_URL @"getschemewiseissues/?result_limit=%@")
-//#define DEPT_ISSUES_LIST (BASE_URL @"getallissuesbydept/?dept_id=%@")
-//#define SCHEME_ISSUES_LIST (BASE_URL @"getallissuesbyscheme/?scheme_id=%@")
-//#define ISSUE_DETAIL_INFO (BASE_URL @"issuedetailedinfo/?issue_id=%@")
-//#define ALL_ISSUES_SERVICE (BASE_URL @"getallissues/")
-//#define MONTHLY_ISSUES_SERVICE (BASE_URL @"getmonthlywiseissues/?result_limit=%@")
-//#define USER_PROFILE_SERVICE (BASE_URL @"getuserinfo/?user_id=%@")
-//#define CHANGE_PWD_SERVICE (BASE_URL @"changepassword")
-//		
+//MARK: DEVICE VERSION
+struct Version {
+    static let SYS_VERSION_FLOAT = (UIDevice.current.systemVersion as NSString).floatValue
+    static let iOS7 = (Version.SYS_VERSION_FLOAT < 8.0 && Version.SYS_VERSION_FLOAT >= 7.0)
+    static let iOS8 = (Version.SYS_VERSION_FLOAT >= 8.0 && Version.SYS_VERSION_FLOAT < 9.0)
+    static let iOS9 = (Version.SYS_VERSION_FLOAT >= 9.0 && Version.SYS_VERSION_FLOAT < 10.0)
+}
+
+
+
+

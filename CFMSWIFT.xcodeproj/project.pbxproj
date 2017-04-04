@@ -16,6 +16,8 @@
 		1447BCCE1E92213A00A2DE60 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1447BCCD1E92213A00A2DE60 /* Extensions.swift */; };
 		1447BCD01E922F8A00A2DE60 /* AlamofireAPIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1447BCCF1E922F8A00A2DE60 /* AlamofireAPIWrapper.swift */; };
 		1447BCD21E92315400A2DE60 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1447BCD11E92315400A2DE60 /* Helper.swift */; };
+		18F776DD1E940DAA00289595 /* ApplicationURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F776DC1E940DAA00289595 /* ApplicationURLs.swift */; };
+		18F776E51E941D0300289595 /* LoginUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F776E41E941D0300289595 /* LoginUserData.swift */; };
 		7E9A3D98CDDE37CE9C7C8AC8 /* Pods_CFMSWIFT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D98F5F02A94A9BDDA0793C4 /* Pods_CFMSWIFT.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		1447BCCD1E92213A00A2DE60 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = CFMSWIFT/Extensions.swift; sourceTree = "<group>"; };
 		1447BCCF1E922F8A00A2DE60 /* AlamofireAPIWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireAPIWrapper.swift; sourceTree = "<group>"; };
 		1447BCD11E92315400A2DE60 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		18F776DC1E940DAA00289595 /* ApplicationURLs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationURLs.swift; sourceTree = "<group>"; };
+		18F776E41E941D0300289595 /* LoginUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserData.swift; sourceTree = "<group>"; };
 		6CF04278310DCDE0F36C03F7 /* Pods-CFMSWIFT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFMSWIFT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CFMSWIFT/Pods-CFMSWIFT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +100,7 @@
 				1447BCCB1E92202700A2DE60 /* ApplicationConstants.swift */,
 				1447BCCD1E92213A00A2DE60 /* Extensions.swift */,
 				1447BCD11E92315400A2DE60 /* Helper.swift */,
+				18F776DC1E940DAA00289595 /* ApplicationURLs.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 		1447BCCA1E921A6700A2DE60 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18F776E41E941D0300289595 /* LoginUserData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -240,9 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F776E51E941D0300289595 /* LoginUserData.swift in Sources */,
 				1447BCBA1E92162A00A2DE60 /* ViewController.swift in Sources */,
 				1447BCB81E92162A00A2DE60 /* AppDelegate.swift in Sources */,
 				1447BCCC1E92202700A2DE60 /* ApplicationConstants.swift in Sources */,
+				18F776DD1E940DAA00289595 /* ApplicationURLs.swift in Sources */,
 				1447BCCE1E92213A00A2DE60 /* Extensions.swift in Sources */,
 				1447BCD01E922F8A00A2DE60 /* AlamofireAPIWrapper.swift in Sources */,
 				1447BCD21E92315400A2DE60 /* Helper.swift in Sources */,

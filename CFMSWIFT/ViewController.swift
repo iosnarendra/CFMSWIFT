@@ -13,27 +13,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var userNameTF: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTF: SkyFloatingLabelTextField!
-    var resutlsDic : Dictionary<String, Any> = [:]
+//    var resutlsDic : Dictionary<String, Any> = [:]
+    var loginResultDict: LoginUserData? = nil
+//    var resutlsDic:Dictionary!
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = "LOGIN"
  
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
-          view.addGestureRecognizer(tap)
-     
-        debugPrint("test commit")
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
     
         super.viewWillAppear(true)
+        
+        hideKeyboardWhenTappedOnView()
+
         userNameTF.text = "rcuser"
-        passwordTF.text = "asman.1"
+        passwordTF.text = "asman"
+        
+        if  iDeviceType == .Pad {
+            debugPrint("pad")
+        } else {
+            debugPrint("phone")
+        }
 
     }
     
@@ -42,79 +47,59 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+//    func hideKeyboardWhenTappedView() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+//    }
+//    
+//    func dismissKeyboard() {
+//        view.endEditing(true)
+//    }
+    
     //MARK: Button Actions
     
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-
     @IBAction func loginAction(_ sender: Any) {
         
-        if userNameTF.text == nil {
-            self.showAlert(title: APPNAME, message: "Username required")
-     
-        } else if passwordTF.text == nil {
-             self.showAlert(title: APPNAME, message: "Password required")
+        if currentReachabilityStatus == .notReachable {
+            self.showAlert(title: APPNAME, message: "No internet connection.!")
         } else {
-          
-            let login_URL = String(format: baseURL + "loginauth/?username="+userNameTF.text!+"&password="+passwordTF.text!)
-            
-            AlamofireAPIWrapper.requestPOSTURL(login_URL, params: nil, headers: ["Content-type" : "application/json"], success:
-                {
-                    (JSONResponse) -> Void in
-//                    debugPrint("success JSONResponse : \(JSONResponse as Any)")
-                    let resultsDict = (JSONResponse.dictionary)
-                    
- 
-                    
-                    
-//                    if let resData = JSONResponse.dictionary {
-//                        if let withGroupDictionary  = resData: [String: JSON]
-//                        {
-//                            debugPrint(resData["user_id"]?.string!)
-//                    }
-                    
-                    
-               
-//                    let searchListArray = (JSONResponse.array)
-//                    
-//                    for eachMessageDictionary in searchListArray!
-//                    {
-//                        let eachMessageModelObject = FoodModel.init(withGroupDictionary: eachMessageDictionary.dictionary!)
-//                        if !self.groupChatArray.contains(eachMessageModelObject)
-//                        {
-//                            self.groupChatArray.append(eachMessageModelObject)
-//                        }
-//                        
-//                    }
-                    
-//                    if let resultsDict: NSDictionary = JSONResponse.dictionary as NSDictionary? {
-//                        if let loginauthResults: NSDictionary = resultsDict["loginauthResults"] as? NSDictionary{
-//                            if let user_id : NSString = loginauthResults["user_id"] as? NSString {
-//                                debugPrint("user_id : \(user_id)")
-//                             }
-//                            
-//                        }
-//                    }
-                    
-                    
-//                    debugPrint("loginauthResults.user_id : \(resultsDict(value(forKey: "loginauthResults")) as Any)")
- //                    UserDefaults.standard.set(resultsDict(value(forKeyPath: "loginauthResults.user_id")), forKey: "USER_ID")
-                    
-            },failure: {
-                (error) -> Void in
+            if userNameTF.text == nil {
+                self.showAlert(title: APPNAME, message: "Username required")
                 
-                let alert = UIAlertController(title: "CFM", message: "Please enter valid credentials.!", preferredStyle: UIAlertControllerStyle.alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alert.addAction(cancelAction)
-                self.present(alert, animated: true, completion: nil)
+            } else if passwordTF.text == nil {
+                self.showAlert(title: APPNAME, message: "Password required")
+            } else {
                 
-                debugPrint(error)
-                debugPrint("failure")
-            })
-            
-//            self.showAlert(title: APPNAME, message: "Login Success")
+                let login_URL = String(format: baseURL + "loginauth/?username="+userNameTF.text!+"&password="+passwordTF.text!)
+                
+                AlamofireAPIWrapper.requestPOSTURL(login_URL, params: nil, headers: ["Content-type" : "application/json"], success:
+                    {
+                        (JSONResponse) -> Void in
+//                      debugPrint(JSONResponse as Any)
+//                      let resultsDict = (JSONResponse.dictionary)
+                        
+                        let resultModelObject = LoginUserData.init(withDictionary: JSONResponse.dictionary!)
+                        debugPrint(resultModelObject)
+
+                        
+                        //                    debugPrint("loginauthResults.user_id : \(resultsDict(value(forKey: "loginauthResults")) as Any)")
+                        //                    UserDefaults.standard.set(resultsDict(value(forKeyPath: "loginauthResults.user_id")), forKey: "USER_ID")
+                        
+                },failure: {
+                    (error) -> Void in
+                    
+                    let alert = UIAlertController(title: "CFM", message: "Please enter valid credentials.!", preferredStyle: UIAlertControllerStyle.alert)
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    debugPrint(error)
+                    debugPrint("failure")
+                })
+                
+                //            self.showAlert(title: APPNAME, message: "Login Success")
+            }
         }
     }
  
@@ -153,24 +138,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func forgotPasswordServiceCall(emailText:String) -> Void {
         debugPrint("forgotpassword service call")
         
-        let forgot_PWD_URL = String(format: baseURL + "newpassword/?username="+emailText)
-        
-        AlamofireAPIWrapper.requestPOSTURL(forgot_PWD_URL, params: nil, headers: ["Content-type" : "application/json"], success:
-            {
-                (JSONResponse) -> Void in
-                debugPrint("success JSONResponse : \(JSONResponse as Any)")
-                let resultsDict = (JSONResponse.dictionary)
-                 
-        },failure: {
-            (error) -> Void in
+        if currentReachabilityStatus == .notReachable {
+            self.showAlert(title: APPNAME, message: "No internet connection.!")
+        } else {
             
-         
+            let forgot_PWD_URL = String(format: baseURL + "newpassword/?username="+emailText)
             
-            debugPrint(error)
-            debugPrint("failure")
-        })
-        
-//        self.showAlert(title: APPNAME, message: "Login Success")
+            AlamofireAPIWrapper.requestPOSTURL(forgot_PWD_URL, params: nil, headers: ["Content-type" : "application/json"], success:
+                {
+                    (JSONResponse) -> Void in
+                    debugPrint("success JSONResponse : \(JSONResponse as Any)")
+                    let resultsDict = (JSONResponse.dictionary)
+                    
+            },failure: {
+                (error) -> Void in
+                
+                
+                
+                debugPrint(error)
+                debugPrint("failure")
+            })
+            
+            //        self.showAlert(title: APPNAME, message: "Login Success")
+        }
         
     }
 
