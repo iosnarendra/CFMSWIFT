@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
         super.viewWillAppear(true)
         userNameTF.text = "rcuser"
-        passwordTF.text = "asman"
+        passwordTF.text = "asman.1"
 
     }
     
@@ -70,6 +70,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
             },failure: {
                 (error) -> Void in
+                
+                let alert = UIAlertController(title: "CFM", message: "Please enter valid credentials.!", preferredStyle: UIAlertControllerStyle.alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true, completion: nil)
+                
                 debugPrint(error)
                 debugPrint("failure")
             })
@@ -96,9 +102,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if textField.text?.characters.count == 0 {
                 self.showAlert(title: APPNAME, message: "Please enter valid user name")
             } else {
-                let emailText = textField.text
-                print("emailText  \(emailText)")
- //                self.forgotPasswordServiceCall(emailText)
+                let emailString = textField.text
+                print("emailText  \(emailString)")
+                print("emailText  \(emailString)")
+                 self.forgotPasswordServiceCall(emailText: emailString!)
             }
         })
        
@@ -106,6 +113,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.present(forgotPasswordAlert, animated: true, completion: nil)
 
     }
+    
+    //MARK: Service Call Methods
+    
+    func forgotPasswordServiceCall(emailText:String) -> Void {
+        debugPrint("forgotpassword service call")
+        
+        let forgot_PWD_URL = String(format: baseURL + "newpassword/?username="+emailText)
+        
+        AlamofireAPIWrapper.requestPOSTURL(forgot_PWD_URL, params: nil, headers: ["Content-type" : "application/json"], success:
+            {
+                (JSONResponse) -> Void in
+                debugPrint("success JSONResponse : \(JSONResponse as Any)")
+                let resultsDict = (JSONResponse.dictionary)
+                 
+        },failure: {
+            (error) -> Void in
+            
+         
+            
+            debugPrint(error)
+            debugPrint("failure")
+        })
+        
+//        self.showAlert(title: APPNAME, message: "Login Success")
+        
+    }
+
 
     //MARK: TextFied Methods
     

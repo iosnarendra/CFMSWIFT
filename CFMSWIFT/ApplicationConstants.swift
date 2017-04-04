@@ -23,7 +23,6 @@ let iPhone = UIUserInterfaceIdiom.phone
 
 //MARK: SERVICE URLS
  let LOGIN_URL = String(format: baseURL + "loginauth/?username=%@"+"&password=%@")
-//var LOGIN_URL : String = baseURL + "loginauth/?username=" + "&password="
 
 //#define LOGIN_URL (BASE_URL @"loginauth/?username=%@&password=%@")
 //#define FORGOT_PWD_URL (BASE_URL @"newpassword/?username=%@")
@@ -37,4 +36,6 @@ let iPhone = UIUserInterfaceIdiom.phone
 //#define ISSUE_DETAIL_INFO (BASE_URL @"issuedetailedinfo/?issue_id=%@")
 //#define ALL_ISSUES_SERVICE (BASE_URL @"getallissues/")
 //#define MONTHLY_ISSUES_SERVICE (BASE_URL @"getmonthlywiseissues/?result_limit=%@")
-		
+//#define USER_PROFILE_SERVICE (BASE_URL @"getuserinfo/?user_id=%@")
+//#define CHANGE_PWD_SERVICE (BASE_URL @"changepassword")
+//		

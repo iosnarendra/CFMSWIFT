@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+
 class AlamofireAPIWrapper: NSObject {
    
     //MARK: -GET REQUEST
@@ -28,6 +29,7 @@ class AlamofireAPIWrapper: NSObject {
             }
         }
     }
+    
     //MARK: -POST REQUEST
 
     class func requestPOSTURL(_ strURL : String, params : [String : AnyObject]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void){
@@ -45,6 +47,9 @@ class AlamofireAPIWrapper: NSObject {
             }
         }
     }
+    
+    //MARK: -UPLOAD POST REQUEST
+
     class func requestUploadPOSTURL(_ strURL : String, params : [String : AnyObject]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void){
 
         }
