@@ -13,9 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var userNameTF: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTF: SkyFloatingLabelTextField!
-//    var resutlsDic : Dictionary<String, Any> = [:]
     var loginResultDict: LoginUserData? = nil
-//    var resutlsDic:Dictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +77,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //                      debugPrint(JSONResponse as Any)
 //                      let resultsDict = (JSONResponse.dictionary)
                         
-                        let resultModelObject = LoginUserData.init(withDictionary: JSONResponse.dictionary!)
-                        debugPrint(resultModelObject)
+//                        let resultModelObject = LoginUserData.init(withDictionary: JSONResponse.dictionary!)
+//                        debugPrint(resultModelObject)
 
                         
                         //                    debugPrint("loginauthResults.user_id : \(resultsDict(value(forKey: "loginauthResults")) as Any)")
