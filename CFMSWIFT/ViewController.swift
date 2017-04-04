@@ -98,7 +98,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             } else {
                 let emailText = textField.text
                 print("emailText  \(emailText)")
-//                self.forgotPasswordServiceCall(emailText)
+ //                self.forgotPasswordServiceCall(emailText)
             }
         })
        
