@@ -114,6 +114,7 @@ extension UnixTime {
 
 extension  UIViewController {
     
+    //Show Alert
     func showAlert(title :String, message: String) -> Void {
       
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -122,6 +123,7 @@ extension  UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Hide Keyboard
     func hideKeyboardWhenTappedOnView() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -131,6 +133,7 @@ extension  UIViewController {
         view.endEditing(true)
     }
     
+    // Device Type
     enum UIUserInterfaceIdiom : Int {
         case Unspecified
         case Phone
